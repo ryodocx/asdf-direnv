@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+
+. $(dirname $0)/util
+checkDependencies
+
+# check ASDK environment variables
+[ -n "$ASDF_INSTALL_VERSION" ] || (echo 'Missing ASDF_INSTALL_VERSION' >&2 && exit 1)
+[ "${ASDF_INSTALL_TYPE}" != "version" ] || (echo 'Sorry, this plugin compatible only ASDF_INSTALL_TYPE=version' >&2 && exit 1)
+[ -n "$ASDF_INSTALL_PATH" ] || (echo 'Missing ASDF_INSTALL_PATH' >&2 && exit 1)
+
+# install
+downloadPath="${ASDF_INSTALL_PATH}/${toolname}"
+curl -sfOL -o "${downloadPath}" "$(getDownloadURL)"
+chmod +x "${downloadPath}"
