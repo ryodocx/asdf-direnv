@@ -2,11 +2,11 @@
 
 github_user=direnv
 github_repo=direnv
+required_commands="curl sed"
 
 checkDependencies() {
     local flag=0
-    local cmds="curl sed"
-    for cmd in ${cmds}; do
+    for cmd in ${required_commands}; do
         if ! type ${cmd} &>/dev/null; then
             echo "required: ${cmd}"
             flag=1
