@@ -11,5 +11,5 @@ checkDependencies
 # install
 mkdir -p "${ASDF_INSTALL_PATH}"
 downloadPath="${ASDF_INSTALL_PATH}/${toolname}"
-curl -fO -o "${downloadPath}" "$(getDownloadURL)"
+curl -fL -o "${downloadPath}" "$(getDownloadURL)"
 chmod +x "${downloadPath}"
