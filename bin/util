@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+github_user=direnv
+github_repo=direnv
+
+checkDependencies() {
+    local flag=0
+    local cmds="curl sed"
+    for cmd in ${cmds}; do
+        if ! type ${cmd} &>/dev/null; then
+            echo "required: ${cmd}"
+            flag=1
+        fi
+    done
+    if [ ${flag} = 1 ]; then
+        exit 1
+    fi
+}
