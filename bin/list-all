@@ -4,8 +4,8 @@ set -e
 . $(dirname $0)/util
 checkDependencies
 
-curl \
+echo $(curl \
     -sf \
     -H "Accept: application/vnd.github.v3+json" \
     "https://api.github.com/repos/${github_user}/${github_repo}/releases?per_page=30" \
-    | sed -nE 's/^    "tag_name": "(.+)",$/\1/pg'
+    | sed -nE 's/^    "tag_name": "(.+)",$/\1/pg')
