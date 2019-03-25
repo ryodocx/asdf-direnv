@@ -9,6 +9,15 @@ checkDependencies
 [ -n "$ASDF_INSTALL_PATH" ] || (echo 'Missing ASDF_INSTALL_PATH' >&2 && exit 1)
 
 # install
+getDownloadURL() {
+    case "$(uname -s)" in
+    "Darwin") os="darwin" ;;
+    "Linux") os="linux" ;;
+    esac
+
+    echo "https://github.com/${github_user}/${github_repo}/releases/download/v${ASDF_INSTALL_VERSION}/direnv.${os}-amd64"
+}
+
 mkdir -p "${ASDF_INSTALL_PATH}/bin"
 downloadPath="${ASDF_INSTALL_PATH}/bin/${toolname}"
 curl -fL -o "${downloadPath}" "$(getDownloadURL)"

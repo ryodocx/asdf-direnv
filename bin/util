@@ -17,12 +17,3 @@ checkDependencies() {
         exit 1
     fi
 }
-
-getDownloadURL() {
-    case "$(uname -s)" in
-    "Darwin") os="darwin" ;;
-    "Linux") os="linux" ;;
-    esac
-
-    echo "https://github.com/${github_user}/${github_repo}/releases/download/${ASDF_INSTALL_VERSION}/direnv.${os}-amd64"
-}
